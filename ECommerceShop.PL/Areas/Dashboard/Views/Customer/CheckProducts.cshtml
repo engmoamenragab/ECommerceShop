@@ -1,0 +1,40 @@
+﻿@inject ECommerceShop.BL.Interfaces.ICustomerRepo customerRepo
+@{
+    ViewData["Title"] = "Check Customer Products";
+}
+
+<h1 class="mb-4">Check Customer Products</h1>
+
+<div class="form-group">
+    <select class="form-control" id="CustId">
+        <option disabled selected hidden>Choose Customer</option>
+        @foreach (var item in customerRepo.ReadAll())
+        {
+            <option value="@item.Id">@item.Name</option>
+        }
+    </select>
+</div>
+
+<button class="btn btn-primary" type="submit" id="CustBtn">Show</button>
+
+<div class="my-4" id="CustValue"></div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(function () {
+        $("#CustBtn").click(function () {
+            var id = $("#CustId").val();
+            $("#CustValue").empty();
+            $.ajax({
+                type: "POST",
+                url: "/Dashboard/Customer/CheckProducts",
+                data: { custId: id },
+                success: function (result) {
+                    $.each(result, function (i, e) {
+                        $("#CustValue").append("<h4>" + e.name + "</h4>");
+                    })
+                }
+            });
+        });
+    });
+</script>

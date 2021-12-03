@@ -1,0 +1,39 @@
+﻿@inject ECommerceShop.BL.Interfaces.IProductRepo productRepo
+@{
+    ViewData["Title"] = "Check Products InStock";
+}
+
+<h1>InStock</h1>
+
+<div class="form-group">
+    <select class="form-control" id="ProdId">
+        <option disabled selected hidden>Choose Product</option>
+        @foreach (var item in productRepo.ReadAll())
+        {
+            <option value="@item.Id">@item.Name</option>
+        }
+    </select>
+</div>
+
+<button class="btn btn-primary" type="submit" id="ProdBtn">Show</button>
+
+<div class="alert alert-success my-4 d-none" id="ProdValue"></div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(function () {
+        $("#ProdBtn").click(function () {
+            var id = $("#ProdId").val();
+            $("#ProdValue").empty();
+            $("#ProdValue").addClass("d-block");
+            $.ajax({
+                type: "POST",
+                url: "/Dashboard/Product/InStock",
+                data: { prodId: id },
+                success: function (result) {
+                    $("#ProdValue").append("<h4>" + result + "</h4>");
+                }
+            });
+        });
+    });
+</script>

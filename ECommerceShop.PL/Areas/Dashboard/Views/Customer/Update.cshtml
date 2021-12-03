@@ -1,0 +1,36 @@
+﻿@model ECommerceShop.BL.ViewModels.CustomerVM
+@{
+    ViewData["Title"] = "Update Customer";
+}
+
+<form asp-area="Dashboard" asp-controller="Customer" asp-action="Update">
+    <input type="hidden" asp-for="Id" />
+    @foreach (var order in Model.Orders)
+    {
+        <input type="hidden" asp-for="@order.Id" />
+    }
+    <div class="form-group row">
+        <label class="col-sm-12 col-form-label" asp-for="Name">Name</label>
+        <div class="col-sm-12 col-md-10">
+            <input class="form-control" type="text" asp-for="Name" />
+            <span class="alert-danger" asp-validation-for="Name"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-12 col-form-label" asp-for="Address">Address</label>
+        <div class="col-sm-12 col-md-10">
+            <input class="form-control" type="text" asp-for="Address" />
+            <span class="alert-danger" asp-validation-for="Address"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-12 col-form-label" asp-for="Phone">Phone</label>
+        <div class="col-sm-12 col-md-10">
+            <input class="form-control" type="text" asp-for="Phone" />
+            <span class="alert-danger" asp-validation-for="Phone"></span>
+        </div>
+    </div>
+    <a class="btn btn-danger" asp-area="Dashboard" asp-controller="Customer" asp-action="Index">Cancel</a>
+    <button class="btn btn-success" type="submit">Update Customer</button>
+</form>
+

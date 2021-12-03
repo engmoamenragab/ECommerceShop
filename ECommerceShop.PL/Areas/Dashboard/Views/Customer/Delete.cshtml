@@ -1,0 +1,34 @@
+﻿@model ECommerceShop.BL.ViewModels.CustomerVM
+@{
+    ViewData["Title"] = "Delete Customer";
+}
+
+<form asp-area="Dashboard" asp-controller="Customer" asp-action="Delete">
+    <div class="form-group row">
+        <label class="col-sm-12 col-form-label" asp-for="Id">Id</label>
+        <div class="col-sm-12 col-md-10">
+            <input class="form-control" type="text" asp-for="Id" disabled />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-12 col-form-label" asp-for="Name">Name</label>
+        <div class="col-sm-12 col-md-10">
+            <input class="form-control" type="text" asp-for="Name" disabled />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-12 col-form-label" asp-for="Address">Address</label>
+        <div class="col-sm-12 col-md-10">
+            <input class="form-control" type="text" asp-for="Address" disabled />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-12 col-form-label" asp-for="Phone">Phone</label>
+        <div class="col-sm-12 col-md-10">
+            <input class="form-control" type="text" asp-for="Phone" disabled />
+        </div>
+    </div>
+    <a class="btn btn-primary" asp-area="Dashboard" asp-controller="Customer" asp-action="Index">Cancel</a>
+    <button class="btn btn-danger" type="submit">Delete Customer</button>
+</form>
+

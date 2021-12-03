@@ -1,0 +1,44 @@
+﻿@model ECommerceShop.BL.ViewModels.OrderVM
+@{
+    ViewData["Title"] = "Read Order";
+}
+
+<div class="min-height-200px">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="title">
+                    <h4>Order Details</h4>
+                </div>
+                <nav aria-label="breadcrumb" role="navigation">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a asp-area="Dashboard" asp-controller="Order" asp-action="Index">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Order Details</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="product-wrap">
+        <div class="product-detail-wrap mb-30">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="product-detail-desc pd-20 card-box height-100-p">
+                        <h4 class="mb-20 pt-20">@Model.Customer.Name</h4>
+                        <p>@Model.Customer.Phone</p>
+                        <p>@Model.Customer.Address</p>
+                        <h2>Product Details</h2>
+                        @foreach (var product in Model.OrderProducts)
+                        {
+                            <h4>@product.Product.Name</h4>
+                            <h4>@product.Product.Quantity</h4>
+                            <h4>@product.Product.Price</h4>
+                        }
+                        <p>@Model.OrderTime</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

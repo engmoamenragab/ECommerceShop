@@ -1,0 +1,58 @@
+﻿@model ECommerceShop.BL.ViewModels.ProductVM
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<form asp-area="Dashboard" asp-controller="Product" asp-action="Delete">
+    <div class="form-group row">
+        <label class="col-sm-12 col-form-label" asp-for="Id">Id</label>
+        <div class="col-sm-12 col-md-10">
+            <input class="form-control" type="text" asp-for="Id" disabled />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-12 col-form-label" asp-for="Name">Name</label>
+        <div class="col-sm-12 col-md-10">
+            <input class="form-control" type="text" asp-for="Name" disabled />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-12 col-form-label" asp-for="Description">Description</label>
+        <div class="col-sm-12 col-md-10">
+            <input class="form-control" type="text" asp-for="Description" disabled />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-12 col-form-label" asp-for="Color">Color</label>
+        <div class="col-sm-12 col-md-10">
+            <input class="form-control" type="text" asp-for="Color" disabled />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-12 col-form-label" asp-for="Size">Size</label>
+        <div class="col-sm-12 col-md-10">
+            <input class="form-control" type="number" asp-for="Size" disabled />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-12 col-form-label" asp-for="Price">Price</label>
+        <div class="col-sm-12 col-md-10">
+            <input class="form-control" type="number" asp-for="Price" disabled />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-12 col-form-label" asp-for="Quantity">Quantity</label>
+        <div class="col-sm-12 col-md-10">
+            <input class="form-control" type="number" asp-for="Quantity" disabled />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-12 col-form-label" asp-for="ProductUser">ProductUser</label>
+        <div class="col-sm-12 col-md-10">
+            <input class="form-control" type="text" asp-for="ProductUser" disabled />
+        </div>
+    </div>
+    <a class="btn btn-primary mr-2" asp-area="Dashboard" asp-controller="Product" asp-action="Index">Cancel</a>
+    <button class="btn btn-danger" >Delete Product</button>
+</form>
+

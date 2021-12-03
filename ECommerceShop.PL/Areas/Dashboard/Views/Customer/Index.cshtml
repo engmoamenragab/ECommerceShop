@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ECommerceShop.BL.ViewModels.CustomerVM>
+@{
+    ViewData["Title"] = "Customers";
+}
+
+@section CSS {
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="~/src/plugins/datatables/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="~/src/plugins/datatables/css/responsive.bootstrap4.min.css">
+}
+
+<a class="btn btn-primary mb-4" asp-area="Dashboard" asp-controller="Customer" asp-action="Create">Add Customer</a>
+<a class="btn btn-primary mb-4" asp-area="Dashboard" asp-controller="Customer" asp-action="CheckProducts">Check Customer Products</a>
+
+<div class="card-box mb-30">
+    <h2 class="h4 pd-20">All Customers</h2>
+    <table class="data-table table nowrap">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th class="datatable-nosort">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model)
+            {
+                <tr>
+                    <td>@customer.Id</td>
+                    <td><h5 class="font-16">@customer.Name</h5></td>
+                    <td>@customer.Address</td>
+                    <td>@customer.Phone</td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                <i class="dw dw-more"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" asp-area="Dashboard" asp-controller="Customer" asp-action="Read" asp-route-id="@customer.Id"><i class="dw dw-eye"></i> Read</a>
+                                <a class="dropdown-item" asp-area="Dashboard" asp-controller="Customer" asp-action="Update" asp-route-id="@customer.Id"><i class="dw dw-edit2"></i> Update</a>
+                                <a class="dropdown-item" asp-area="Dashboard" asp-controller="Customer" asp-action="Delete" asp-route-id="@customer.Id"><i class="dw dw-delete-3"></i> Delete</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section JS {
+    <!-- JS -->
+    <script src="~/src/plugins/apexcharts/apexcharts.min.js"></script>
+    <script src="~/src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+    <script src="~/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/vendors/scripts/dashboard.js"></script>
+}
+

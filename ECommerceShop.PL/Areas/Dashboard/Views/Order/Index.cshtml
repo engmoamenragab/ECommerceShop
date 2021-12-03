@@ -1,0 +1,84 @@
+﻿@model IEnumerable<ECommerceShop.BL.ViewModels.OrderVM>
+@{
+    ViewData["Title"] = "Orders";
+}
+
+@section CSS {
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="~/src/plugins/datatables/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="~/src/plugins/datatables/css/responsive.bootstrap4.min.css">
+}
+
+<a class="btn btn-primary mb-4" asp-area="Dashboard" asp-controller="Order" asp-action="Create">Add Order</a>
+<buttun class="btn btn-primary mb-4" id="CountBtn">Orders Count</buttun>
+<div class="alert alert-success mb-4 d-none" id="CountArea"></div>
+
+<div class="card-box mb-30">
+    <h2 class="h4 pd-20">All Orders</h2>
+    <table class="data-table table nowrap">
+        <thead>
+            <tr>
+                <th>Order Time</th>
+                <th>Customer Name</th>
+                <th>Customer Phone</th>
+                <th>Products</th>
+                <th class="datatable-nosort">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@order.OrderTime</td>
+                    <td><h5 class="font-16">@order.Customer.Name</h5></td>
+                    <td>@order.Customer.Phone</td>
+                    <td>
+                        @foreach (var product in order.OrderProducts)
+                        {
+                            <span>@product.Product.Name - </span>
+                        }
+                    </td>
+                    <td>
+                        <div class="dropdown">
+                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                <i class="dw dw-more"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item" asp-area="Dashboard" asp-controller="Order" asp-action="Read" asp-route-id="@order.Id"><i class="dw dw-eye"></i> Read</a>
+                                <a class="dropdown-item" asp-area="Dashboard" asp-controller="Order" asp-action="Delete" asp-route-id="@order.Id"><i class="dw dw-delete-3"></i> Delete</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(function () {
+        $("#CountBtn").click(function () {
+            $("#CountArea").empty();
+            $("#CountArea").addClass("d-block");
+            $.ajax({
+                type: "POST",
+                url: "/Dashboard/Order/Count",
+                data: { },
+                success: function (result) {
+                    $("#CountArea").append("<h4>" + result + "</h4>");
+                }
+            });
+        });
+    });
+</script>
+
+@section JS {
+    <!-- JS -->
+    <script src="~/src/plugins/apexcharts/apexcharts.min.js"></script>
+    <script src="~/src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+    <script src="~/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/vendors/scripts/dashboard.js"></script>
+}
